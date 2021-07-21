@@ -48,6 +48,15 @@
     "GetFieldBy": "Name",
     "ValueToFind": "btnGuardarCentroCosto"
   },
+  "GuardarYEnviarAFlujoCentroDeCosto": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "btnGuardarIniciarFlujo"
+  },
+  "CancelarCentroDeCosto": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "btnCancelarCentroCosto"
+  },
+
   "Mensaje": {
     "GetFieldBy": "Id",
     "ValueToFind": "MessagesAndErrors"
