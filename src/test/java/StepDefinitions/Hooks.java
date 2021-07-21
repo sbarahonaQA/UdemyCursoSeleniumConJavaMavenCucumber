@@ -59,7 +59,7 @@ public class Hooks {
 	        }
 	        
 			log.info("***********************************************************************************************************");
-			log.info("[ Driver Status ] - Clean and close the intance of the driver");
+			log.info("[ Driver Status ] - Cerrando instancia del webdriver");
 			log.info("***********************************************************************************************************");
 	        driver.quit();
 	        

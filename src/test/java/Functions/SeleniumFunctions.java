@@ -84,38 +84,35 @@ public class SeleniumFunctions {
         Entity = (JSONObject) jsonObject.get(element);
         log.info(Entity.toJSONString());
         return Entity;
-
     }
 
     public void ScreenShot(String TestCaptura) throws IOException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmm");
         String screenShotName = readProperties("ScreenShotPath") + "\\" + readProperties("browser") + "\\" + TestCaptura + "_(" + dateFormat.format(GregorianCalendar.getInstance().getTime()) + ")";
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        log.info("Screenshot saved as:" + screenShotName);
+        log.info("Captura de pantalla guardada como:" + screenShotName);
         FileUtils.copyFile(scrFile, new File(String.format("%s.png", screenShotName)));
     }
 
     public byte[] attachScreenShot(){
-
-        log.info("Attaching Screenshot");
+        log.info("Adjuntando captura de pantalla");
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         return screenshot;
-
     }
 
     public boolean isElementDisplayed(String element) throws Exception {
         boolean isDisplayed = Boolean.parseBoolean(null);
         try {
             By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
-            log.info(String.format("Waiting Element: %s", element));
+            log.info(String.format("Esperando elemento: %s", element));
             WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_TIMEOUT);
             isDisplayed = wait.until(ExpectedConditions.presenceOfElementLocated(SeleniumElement)).isDisplayed();
         }catch (NoSuchElementException | TimeoutException e){
             isDisplayed = false;
             log.info(e);
         }
-        log.info(String.format("%s visibility is: %s", element, isDisplayed));
+        log.info(String.format("%s visbilidad es: %s", element, isDisplayed));
         return isDisplayed;
     }
 
@@ -125,9 +122,9 @@ public class SeleniumFunctions {
             WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_TIMEOUT);
             Alert alert = wait.until(ExpectedConditions.alertIsPresent());
             alert.accept();
-            log.info("The alert was accepted successfully.");
+            log.info("Alerta aceptada exitosamente.");
         }catch(Throwable e){
-            log.error("Error came while waiting for the alert popup. "+e.getMessage());
+            log.error("Error al esperar que apareciera alerta. "+e.getMessage());
         }
     }
 
@@ -137,9 +134,9 @@ public class SeleniumFunctions {
             WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_TIMEOUT);
             Alert alert = wait.until(ExpectedConditions.alertIsPresent());
             alert.dismiss();
-            log.info("The alert was dismissed successfully.");
+            log.info("Alerta rechazada exitosamente.");
         }catch(Throwable e){
-            log.error("Error came while waiting for the alert popup. "+e.getMessage());
+            log.error("Error al esperar que apareciera alerta. "+e.getMessage());
         }
     }
 
@@ -173,30 +170,30 @@ public class SeleniumFunctions {
     public void selectOptionDropdownByIndex(String element, int option) throws Exception
     {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
-        log.info(String.format("Waiting Element: %s", element));
+        log.info(String.format("Esperando elemento: %s", element));
 
         Select opt = new Select(driver.findElement(SeleniumElement));
-        log.info("Select option: " + option + "by text");
+        log.info("Seleccionando: " + option + "por indice");
         opt.selectByIndex(option);
     }
 
     public void selectOptionDropdownByText(String element, String option) throws Exception
     {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
-        log.info(String.format("Waiting Element: %s", element));
+        log.info(String.format("Esperando elemento: %s", element));
 
         Select opt = new Select(driver.findElement(SeleniumElement));
-        log.info("Select option: " + option + "by text");
+        log.info("Seleccionando: " + option + "por texto");
         opt.selectByVisibleText(option);
     }
 
     public void selectOptionDropdownByValue(String element, String option) throws Exception
     {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
-        log.info(String.format("Waiting Element: %s", element));
+        log.info(String.format("Esperando elemento: %s", element));
 
         Select opt = new Select(driver.findElement(SeleniumElement));
-        log.info("Select option: " + option + "by text");
+        log.info("Seleccionando: " + option + "por valor");
         opt.selectByValue(option);
     }
 
@@ -205,7 +202,7 @@ public class SeleniumFunctions {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         boolean isChecked = driver.findElement(SeleniumElement).isSelected();
         if(!isChecked){
-            log.info("Clicking on the checkbox to select: " + element);
+            log.info("Marcando elemento: " + element);
             driver.findElement(SeleniumElement).click();
         }
     }
@@ -215,7 +212,7 @@ public class SeleniumFunctions {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         boolean isChecked = driver.findElement(SeleniumElement).isSelected();
         if(isChecked){
-            log.info("Clicking on the checkbox to select: " + element);
+            log.info("Desmarcando elemento: " + element);
             driver.findElement(SeleniumElement).click();
         }
     }
@@ -224,7 +221,7 @@ public class SeleniumFunctions {
     {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        log.info("Scrolling to element: " + element);
+        log.info("Desplazandose al elemento: " + element);
         jse.executeScript("arguments[0].scrollIntoView();", driver.findElement(SeleniumElement));
 
     }
@@ -233,7 +230,7 @@ public class SeleniumFunctions {
     {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         JavascriptExecutor jse = (JavascriptExecutor)driver;
-        log.info("Scrolling to element: " + element);
+        log.info("Desplazandose al elemento: " + element);
         jse.executeScript("arguments[0].click()", driver.findElement(SeleniumElement));
 
     }
@@ -243,7 +240,7 @@ public class SeleniumFunctions {
         ElementText = GetTextElement(element);
 
         boolean isFoundFalse = ElementText.indexOf(text) !=-1? true: false;
-        Assert.assertFalse("Text is present in element: " + element + " current text is: " + ElementText, isFoundFalse);
+        Assert.assertFalse("Texto SI esta presente en elemento: " + element + " - texto: " + ElementText, isFoundFalse);
 
     }
 
@@ -253,7 +250,7 @@ public class SeleniumFunctions {
 
         boolean isFound = ElementText.indexOf(text) !=-1? true: false;
 
-        Assert.assertTrue("Text is not present in element: " + element + " current text is: " + ElementText, isFound);
+        Assert.assertTrue("Texto NO esta presente en elemento: " + element + " - texto: " + ElementText, isFound);
 
     }
 
@@ -272,7 +269,7 @@ public class SeleniumFunctions {
     public void iSetElementWithText(String element, String text) throws Exception {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         driver.findElement(SeleniumElement).sendKeys(text);
-        log.info(String.format("Set on element %s with text %s", element, text));
+        log.info(String.format("Al elemento %s se le pone este texto %s", element, text));
     }
 
     public void iSetElementWithKeyValue(String element, String key) throws Exception {
@@ -281,7 +278,7 @@ public class SeleniumFunctions {
         if (exist){
             String text = this.ScenaryData.get(key);
             driver.findElement(SeleniumElement).sendKeys(text);
-            log.info(String.format("Set on element %s with text %s", element, text));
+            log.info(String.format("Al elemento %s se le pone este texto %s", element, text));
         }else{
             Assert.assertTrue(String.format("The given key %s do not exist in Context", key), this.ScenaryData.containsKey(key));
         }
@@ -293,13 +290,13 @@ public class SeleniumFunctions {
         Actions action = new Actions(driver);
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         action.moveToElement(driver.findElement(SeleniumElement)).doubleClick().perform();
-        log.info("Double click on element: " + element);
+        log.info("Doble click al elemento: " + element);
     }
 
     public void iClicInElement(String element) throws Exception {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         driver.findElement(SeleniumElement).click();
-        log.info("Click on element by " + element);
+        log.info("Click al elemento: " + element);
 
     }
 
@@ -307,12 +304,12 @@ public class SeleniumFunctions {
     {
         JavascriptExecutor jse = (JavascriptExecutor)driver;
         if(to.equals("top")){
-            log.info("Scrolling to the top of the page");
+            log.info("Desplazandose al inicio de la pagina");
             jse.executeScript("scroll(0, -250);");
 
         }
         else if(to.equals("end")){
-            log.info("Scrolling to the end of the page");
+            log.info("Desplazandose al final de la pagina");
             jse.executeScript("scroll(0, 250);");
         }
     }
@@ -327,14 +324,14 @@ public class SeleniumFunctions {
     public void switchToFrame(String Frame) throws Exception {
 
         By SeleniumElement = SeleniumFunctions.getCompleteElement(Frame);
-        log.info("Switching to frame: " + Frame);
+        log.info("Cambiando de frame: " + Frame);
         driver.switchTo().frame(driver.findElement(SeleniumElement));
 
     }
 
     public void switchToParentFrame() {
 
-        log.info("Switching to parent frame");
+        log.info("Cambiando al frame padre");
         driver.switchTo().parentFrame();
 
     }
@@ -343,7 +340,7 @@ public class SeleniumFunctions {
     {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         WebDriverWait w = new WebDriverWait(driver, EXPLICIT_TIMEOUT);
-        log.info("Waiting for the element: "+element + " to be present");
+        log.info("Esperando que el elemento: "+element + " esté presente");
         w.until(ExpectedConditions.presenceOfElementLocated(SeleniumElement));
     }
 
@@ -351,7 +348,7 @@ public class SeleniumFunctions {
     {
         By SeleniumElement = SeleniumFunctions.getCompleteElement(element);
         WebDriverWait w = new WebDriverWait(driver, EXPLICIT_TIMEOUT);
-        log.info("Waiting for the element: "+element+ " to be visible");
+        log.info("Esperando que el elemento: "+element + " esté visible");
         w.until(ExpectedConditions.visibilityOfElementLocated(SeleniumElement));
     }
 
@@ -359,10 +356,10 @@ public class SeleniumFunctions {
 
         if (!this.ScenaryData.containsKey(key)) {
             this.ScenaryData.put(key,text);
-            log.info(String.format("Save as Scenario Context key: %s with value: %s ", key,text));
+            log.info(String.format("Guardar como contexto de escenario - llave: %s - valor: %s ", key,text));
         } else {
             this.ScenaryData.replace(key,text);
-            log.info(String.format("Update Scenario Context key: %s with value: %s ", key,text));
+            log.info(String.format("Actualizar como contexto de escenario - llave: %s - valor: %s ", key,text));
         }
 
     }
