@@ -1,0 +1,17 @@
+{
+  "Usuario": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "txtUsername"
+  },
+
+  "Contrasenia": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "txtPassword"
+  },
+
+  "BotonIniciarSesion": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "btnIniciarSesion"
+  }
+
+}

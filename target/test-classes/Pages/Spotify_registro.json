@@ -1,0 +1,52 @@
+{
+  "Logo": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//a[@class='spotify-logo']"
+  },
+
+  "Titulo": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//h2[contains(@class,'center hdr-l')]"
+  },
+
+  "Already": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//p[@class='primary']"
+  },
+
+  "Email": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//input[@id='email']"
+  },
+
+  "Email Confirmacion": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "//input[@id='confirm']"
+  },
+
+  "Pass": {
+    "GetFieldBy": "id",
+    "ValueToFind": "register-password"
+  },
+
+  "Nombre": {
+    "GetFieldBy": "xpath",
+    "ValueToFind": "//input[contains(@id,'register-displayname')]"
+  },
+
+  "Mes de Nacimiento": {
+    "GetFieldBy": "xpath",
+    "ValueToFind": "//select[@id='register-dob-month']"
+  },
+
+  "Email Error": {
+    "GetFieldBy": "xpath",
+    "ValueToFind": "//span[@class='LinkContainer-sc-1t58wcv-0 gUjKMh']"
+  },
+
+  "text":{
+    "GetFieldBy": "xpath",
+    "ValueToFind": "//*[contains(text(), '{0}')]"
+  }
+
+}

@@ -1,0 +1,64 @@
+{
+  "Organizacion": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "/html/body/div[1]/div[2]/div[2]/a[2]"
+  },
+
+  "EstructuraOrganizativa": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "/html/body/div[1]/div[4]/div[2]/div[2]/table[1]/tbody/tr/td/div[1]/div[2]/h2/a"
+  },
+
+  "CentrosDeCosto": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "/html/body/div[1]/div[4]/div[2]/div[2]/div[2]/fieldset[1]/div/div[5]/div[3]/div[2]/h2/a"
+  },
+
+  "Nuevo": {
+    "GetFieldBy": "Xpath",
+    "ValueToFind": "/html/body/div[1]/div[4]/div[2]/div[2]/div[2]/div[1]/div/button[1]/table/tbody/tr/td[2]"
+  },
+
+  "Descripcion": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "Descripcion"
+  },
+  "Abreviatura": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "Abreviatura"
+  },
+  "NomenContable": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "NomenclaturaContable"
+  },
+  "CtaContable": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "CtaContable"
+  },
+  "Compania": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "CodigoCompania"
+  },
+  "AreaFuncional": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "CodigoAreaFuncional"
+  },
+
+  "GuardarCentroDeCosto": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "btnGuardarCentroCosto"
+  },
+  "GuardarYEnviarAFlujoCentroDeCosto": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "btnGuardarIniciarFlujo"
+  },
+  "CancelarCentroDeCosto": {
+    "GetFieldBy": "Name",
+    "ValueToFind": "btnCancelarCentroCosto"
+  },
+
+  "Mensaje": {
+    "GetFieldBy": "Id",
+    "ValueToFind": "MessagesAndErrors"
+  }
+}
